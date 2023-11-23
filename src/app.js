@@ -7,6 +7,7 @@ import './styles.css';
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
+// new app
 function App({store}) {
 
   const list = store.getState().list;
