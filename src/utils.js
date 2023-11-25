@@ -26,3 +26,20 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+export const grammar=(num)=>{
+  let nums=['2','3','4'];
+  let numLast=(num+'').split('').slice(-2);
+  
+  if(numLast[0]!=='1' && nums.includes(numLast[1])){
+    return 'раза';
+  }else if(numLast.length===1 && nums.includes(numLast[0])) {
+    return 'раза';
+  }else{
+    return 'раз';
+  }
+
+  
+};
+
+grammar(2);

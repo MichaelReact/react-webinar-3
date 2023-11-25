@@ -1,7 +1,7 @@
 import React from 'react';
 import {createElement} from './utils.js';
 import './styles.css';
-
+import {grammar} from './utils.js';
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
@@ -27,7 +27,7 @@ function App({store}) {
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
                    onClick={() => store.selectItem(item.code)}>
                 <div className='Item-code'>{item.code}</div>
-                <div className='Item-title'>{item.title}  {item.selectNum>0?`Выделено ${item.selectNum} раз`:''}</div>
+                <div className='Item-title'>{item.title}{item.selectNum>0?` | Выделено ${item.selectNum} ${grammar(item.selectNum)}`:''}</div>
                 <div className='Item-actions'>
                   <button onClick={() => store.deleteItem(item.code)}>
                     Удалить
