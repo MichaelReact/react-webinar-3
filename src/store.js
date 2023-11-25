@@ -60,7 +60,7 @@ class Store {
 
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: newCode, title: 'Новая запись'}]
+      list: [...this.state.list, {code: newCode, title: 'Новая запись',selectNum:0}]
     })
     const newArr=this.state.list.map(item=>item.code);
     this.codes=new Set([...this.codes].concat(newArr));
