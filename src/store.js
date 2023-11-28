@@ -71,18 +71,26 @@ class Store {
    * @param code
    */
   deleteItem(code) {
-    this.setState({
-      ...this.state,
-      list: this.state.list.filter(item => item.code !== code)
-    })
-    // this.state.list.forEach((item,i)=>item.code=i+1);
+      setTimeout(() => {
+      
+        this.setState({
+          ...this.state,
+          list: this.state.list.filter(item => item.code !== code)
+        });
+        // this.state.list.forEach((item,i)=>item.code=i+1);
+      }, 3000);
+   
   };
 
   /**
    * Выделение записи по коду
    * @param code
    */
-  selectItem(code) {
+  selectItem(e,code) {
+    const target=e.target;
+   
+    if(target.closest('.Item-actions')) return;
+    console.log(e.target)
     this.state.list.forEach(item=>{
       item.code!==code?item.selected=false:item.selected;
     });

@@ -25,9 +25,9 @@ function App({store}) {
           list.map(item =>
             <div key={item.code} className='List-item'>
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
-                   onClick={() => store.selectItem(item.code)}>
+                   onClick={(e) => store.selectItem(e,item.code)}>
                 <div className='Item-code'>{item.code}</div>
-                <div className='Item-title'>{item.title}{item.selectNum>0?` | Выделено ${item.selectNum} ${grammar(item.selectNum)}`:''}</div>
+                <div className='Item-title'>{item.title}{item.selectNum>0?` | Выделено ${item.selectNum} ${grammar(item.selectNum,'раз','раза')}`:''}</div>
                 <div className='Item-actions'>
                   <button onClick={() => store.deleteItem(item.code)}>
                     Удалить
