@@ -5,7 +5,7 @@ import './style.css';
 function Controls({onOpen}) {
   return (
     <div className='Controls'>
-      <button onClick={()=>onOpen()}>Добавить</button>
+      <button onClick={()=>onOpen()}>Перейти</button>
     </div>
   )
 }

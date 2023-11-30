@@ -62,7 +62,8 @@ g
    */
   deleteItem(id) {
     console.log(id)
-    this.modalState.list.filter(item=>item.code!==id);
+    this.modalState.list=this.modalState.list.filter(item=>item.code!==id);
+  console.log(this.modalState.list)
     for (const listener of this.listeners) listener();
     // this.setState({
     //   ...this.state,
