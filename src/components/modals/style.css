@@ -1,0 +1,35 @@
+body{
+    position: relative;
+}
+
+.modal-wrapper {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    display:none;
+    z-index: 10;
+    height:100%;
+}
+.overlay{
+    background: rgba(0, 0, 0, 0.70);
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+   
+    z-index: 10;
+}
+.modal{
+    width:960px;
+    height:407px;
+    background:#fff;
+    position: absolute;
+    top: 20%;
+    transform:translateY(-20%);
+    left: 50%;
+    transform:translateX(-50%);
+    z-index: 20;
+}

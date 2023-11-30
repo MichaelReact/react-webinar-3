@@ -6,6 +6,7 @@ import {generateCode} from "./utils";
 class Store {
   constructor(initState = {}) {
     this.state = initState;
+    this.modalState={list:[]};
     this.listeners = []; // Слушатели изменений состояния
   }
 
@@ -21,7 +22,7 @@ class Store {
       this.listeners = this.listeners.filter(item => item !== listener);
     }
   }
-
+  
   /**
    * Выбор состояния
    * @returns {Object}
@@ -29,7 +30,7 @@ class Store {
   getState() {
     return this.state;
   }
-
+g
   /**
    * Установка состояния
    * @param newState {Object}
@@ -43,23 +44,31 @@ class Store {
   /**
    * Добавление новой записи
    */
-  addItem() {
-    this.setState({
-      ...this.state,
-      list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
-    })
+  addItem(id) {
+    const addItem=this.state.list.find(item=>item.code===id);
+    if(!this.modalState.list.find(item=>item.code===addItem.code)){
+      this.modalState.list.push(addItem);
+    }
+    for (const listener of this.listeners) listener();
+    // this.setState({
+    //   ...this.state,
+    //   list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
+    // })
   };
 
   /**
    * Удаление записи по коду
    * @param code
    */
-  deleteItem(code) {
-    this.setState({
-      ...this.state,
-      // Новый список, в котором не будет удаляемой записи
-      list: this.state.list.filter(item => item.code !== code)
-    })
+  deleteItem(id) {
+    console.log(id)
+    this.modalState.list.filter(item=>item.code!==id);
+    for (const listener of this.listeners) listener();
+    // this.setState({
+    //   ...this.state,
+    //   // Новый список, в котором не будет удаляемой записи
+    //   list: this.state.list.filter(item => item.code !== code)
+    // })
   };
 
   /**
@@ -82,6 +91,9 @@ class Store {
         return item.selected ? {...item, selected: false} : item;
       })
     })
+  }
+  getModalState(){
+    return this.modalState;
   }
 }
 

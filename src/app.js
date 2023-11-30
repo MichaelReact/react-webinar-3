@@ -3,7 +3,7 @@ import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
-
+import Modal from "./components/modals";
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
@@ -12,7 +12,8 @@ import PageLayout from "./components/page-layout";
 function App({store}) {
 
   const list = store.getState().list;
-
+  const listModal = store.getModalState().list;
+console.log(listModal);
   const callbacks = {
     onDeleteItem: useCallback((code) => {
       store.deleteItem(code);
@@ -22,19 +23,30 @@ function App({store}) {
       store.selectItem(code);
     }, [store]),
 
-    onAddItem: useCallback(() => {
-      store.addItem();
-    }, [store])
+    onAddItem: useCallback((id) => {
+      store.addItem(id);
+    }, [store]),
+    onClose:useCallback((e)=>{
+      console.log(e.target)
+      e.target.closest('.modal-wrapper').style.display='none';
+    }),
+    onOpen:useCallback((e)=>{
+     
+      document.querySelector('.modal-wrapper').style.display='block';
+    })
   }
 
   return (
+    <>
     <PageLayout>
       <Head title='Приложение на чистом JS'/>
-      <Controls onAdd={callbacks.onAddItem}/>
+      <Controls onOpen={callbacks.onOpen}/>
       <List list={list}
-            onDeleteItem={callbacks.onDeleteItem}
-            onSelectItem={callbacks.onSelectItem}/>
+            onAddItem={callbacks.onAddItem}
+            />
     </PageLayout>
+    <Modal list={listModal} onClose={callbacks.onClose} onDelete={callbacks.onDeleteItem}/>
+    </>
   );
 }
 

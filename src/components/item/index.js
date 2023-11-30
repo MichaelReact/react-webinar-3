@@ -15,9 +15,11 @@ function Item(props) {
         setCount(count + 1);
       }
     },
-    onDelete: (e) => {
-      e.stopPropagation();
-      props.onDelete(props.item.code);
+    onAdd: (id) => {
+      console.log(id)
+      // e.stopPropagation();
+      // props.onDelete(props.item.code);
+      props.onAddItem(id);
 
     }
   }
@@ -34,8 +36,8 @@ function Item(props) {
       })}` : ''}
       </div>
       <div className='Item-actions'>
-        <button onClick={callbacks.onDelete}>
-          Удалить
+        <button onClick={()=>callbacks.onAdd(props.id)}>
+          Добавить
         </button>
       </div>
     </div>
