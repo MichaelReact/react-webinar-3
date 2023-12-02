@@ -10,23 +10,30 @@ function Item(props) {
 
   const callbacks = {
     onClick: () => {
-      props.onSelect(props.item.code);
+      props.onSelectItem(props.item.code);
       if (!props.item.selected) {
         setCount(count + 1);
       }
     },
-    onAdd: (id) => {
-      console.log(id)
+    onSelect:(e)=>{
+      
+      console.log('select')
+      props.onSelectItem(props.item.code);
+    },
+    onAdd: (e) => {
+      
       // e.stopPropagation();
       // props.onDelete(props.item.code);
-      props.onAddItem(id);
+      
+      
+      props.onAddItem(props.id);
 
     }
   }
 
   return (
     <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}
-         onClick={callbacks.onClick}>
+     >
       <div className='Item-code'>{props.item.code}</div>
       <div className='Item-title'>
         {props.item.title} {count ? ` | Выделяли ${count} ${plural(count, {
@@ -35,8 +42,8 @@ function Item(props) {
         many: 'раз'
       })}` : ''}
       </div>
-      <div className='Item-actions'>
-        <button onClick={()=>callbacks.onAdd(props.id)}>
+      <div className='Item-actions'   onClick={callbacks.onSelect}>
+        <button onClick={callbacks.onAdd}>
           Добавить
         </button>
       </div>

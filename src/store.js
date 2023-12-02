@@ -45,11 +45,16 @@ g
    * Добавление новой записи
    */
   addItem(id) {
-    const addItem=this.state.list.find(item=>item.code===id);
-    if(!this.modalState.list.find(item=>item.code===addItem.code)){
-      this.modalState.list.push(addItem);
+    console.log(id,this.state.list)
+    const newItem=this.state.list.find(item=>item.code===id);
+    console.log(newItem)
+    if(!this.modalState.list.find(item=>item.code===newItem.code)){
+     
+      this.modalState.list.push(newItem);
     }
-    for (const listener of this.listeners) listener();
+    
+    
+    
     // this.setState({
     //   ...this.state,
     //   list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
@@ -62,6 +67,9 @@ g
    */
   deleteItem(id) {
     console.log(id)
+
+    this.modalState.list.find(item=>item.code===id).count=0;
+    
     this.modalState.list=this.modalState.list.filter(item=>item.code!==id);
   console.log(this.modalState.list)
     for (const listener of this.listeners) listener();
@@ -77,21 +85,16 @@ g
    * @param code
    */
   selectItem(code) {
-    this.setState({
-      ...this.state,
-      list: this.state.list.map(item => {
+      this.modalState.list.forEach(item=>{
         if (item.code === code) {
-          // Смена выделения и подсчёт
-          return {
-            ...item,
-            selected: !item.selected,
-            count: item.selected ? item.count : item.count + 1 || 1,
-          };
+            item.count= !item.count ? 1:item.count+1
         }
-        // Сброс выделения если выделена
-        return item.selected ? {...item, selected: false} : item;
       })
-    })
+        
+      
+    
+      for (const listener of this.listeners) listener();
+      
   }
   getModalState(){
     return this.modalState;

@@ -3,6 +3,7 @@ import './style.css';
 
 
 const Modal=({onClose,list,onDelete})=>{
+  console.log(list)
    function onDeleteItem(id){
     onDelete(id)
    }
@@ -15,7 +16,7 @@ const Modal=({onClose,list,onDelete})=>{
                             <h1>Корзина</h1>
                             <button onClick={onClose}>Закрыть</button> 
                             {list.map(item=>{
-                                console.log(item.code)
+                               
                                 return (
                                   
                                         <div className='Item'>
@@ -23,9 +24,10 @@ const Modal=({onClose,list,onDelete})=>{
                                           <div className='Item-title'>
                                             {item.title} 
                                           </div>
-                                          <div>{item.price}</div>
+                                          
                                           <div className='Item-actions'>
-                                            
+                                          <div className='Item-actions__price'> {item.price}</div>
+                                          <div className='Item-actions__count'>{`${item.count} шт`}</div>
                                             <button onClick={()=>onDelete(item.code)}
                                             >
                                               Удалить

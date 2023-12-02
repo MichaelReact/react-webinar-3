@@ -40,9 +40,10 @@ console.log(listModal);
     <>
     <PageLayout>
       <Head title='Приложение на чистом JS'/>
-      <Controls onOpen={callbacks.onOpen}/>
+      <Controls onOpen={callbacks.onOpen} listModal={listModal}/>
       <List list={list}
             onAddItem={callbacks.onAddItem}
+            onSelectItem={callbacks.onSelectItem}
             />
     </PageLayout>
     <Modal list={listModal} onClose={callbacks.onClose} onDelete={callbacks.onDeleteItem}/>
