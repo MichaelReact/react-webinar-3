@@ -39,7 +39,7 @@ console.log(listModal);
   return (
     <>
     <PageLayout>
-      <Head title='Приложение на чистом JS'/>
+      <Head title='Магазин'/>
       <Controls onOpen={callbacks.onOpen} listModal={listModal}/>
       <List list={list}
             onAddItem={callbacks.onAddItem}

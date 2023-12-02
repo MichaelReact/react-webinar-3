@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import './style.css';
 
 
@@ -13,20 +14,20 @@ const Modal=({onClose,list,onDelete})=>{
                         
                 </div>
                 <div className="modal">
-                            <h1>Корзина</h1>
-                            <button onClick={onClose}>Закрыть</button> 
+                            <h1 className="modal__title">Корзина</h1>
+                            <button className="close" onClick={onClose}>Закрыть</button> 
                             {list.map(item=>{
                                
                                 return (
                                   
-                                        <div className='Item'>
+                                        <div className='Item' key={item.code}>
                                           <div className='Item-code'>{item.code}</div>
                                           <div className='Item-title'>
                                             {item.title} 
                                           </div>
                                           
                                           <div className='Item-actions'>
-                                          <div className='Item-actions__price'> {item.price}</div>
+                                          <div className='Item-actions__price'> {item.price+' ₽'}</div>
                                           <div className='Item-actions__count'>{`${item.count} шт`}</div>
                                             <button onClick={()=>onDelete(item.code)}
                                             >
@@ -41,4 +42,9 @@ const Modal=({onClose,list,onDelete})=>{
             </div>);
 };
 
+Modal.propTypes={
+ list: Proptypes.array.isRequired,
+  onClose: PropTypes.func,
+  onDelete: PropTypes.func
+}
 export default React.memo(Modal);

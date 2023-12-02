@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './style.css';
+import {plural} from "../../utils";
 
 function Controls({onOpen,listModal}) {
 
@@ -19,8 +20,14 @@ function Controls({onOpen,listModal}) {
 console.log(listModal)
   return (
     <div className='Controls'>
-     <div className="price">{price}</div>
-     <div className="count">{quantity}</div>
+      В корзине:{quantity===0? <span className="Controls__empty">  Пусто </span> :
+      <><span className="count">  {quantity} {plural(quantity, {
+        one: 'товар',
+        few: 'товара',
+        many: 'товаров'
+      })} /</span>
+     <span className="price">{price} ₽  </span> </>}
+      
       <button onClick={()=>onOpen()}>Перейти</button>
     </div>
   )

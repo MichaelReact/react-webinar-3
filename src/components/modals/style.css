@@ -33,6 +33,24 @@ body{
     transform:translateX(-50%);
     z-index: 20;
 }
-.Item-actions__price,.Item-actions__count{
+.modal .Item-actions__price,.Item-actions__count{
     margin-right: 30px;
+}
+.modal .Item-actions{
+    margin-left: auto;
+}
+.modal .close{
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    cursor:pointer;
+}
+.modal__title{
+    color: #000;
+
+font-family: Arial;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+padding-left: 20px;
 }

@@ -3,3 +3,25 @@
   justify-content: flex-end;
   padding: 20px;
 }
+.price{
+  margin-right: 15px;
+  font-weight: 700;
+  margin-left: 4px;
+}
+.count{
+  margin-left: 20px;
+  font-weight: 700;
+  
+}
+button{
+  margin-left: 20px;
+  border-radius: 2px;
+border: 1px solid #767676;
+background: #EFEFEF;
+width: 76px;
+height: 21px;
+
+}
+.Controls__empty{
+  margin-left: 12px;
+}
