@@ -50,7 +50,7 @@ g
     console.log(newItem)
     if(!this.modalState.list.find(item=>item.code===newItem.code)){
      
-      this.modalState.list.push(newItem);
+      this.modalState.list=[...this.modalState.list,newItem];
     }
     
     
@@ -85,11 +85,12 @@ g
    * @param code
    */
   selectItem(code) {
-      this.modalState.list.forEach(item=>{
+      this.modalState.list=this.modalState.list.map(item=>{
         if (item.code === code) {
-            item.count= !item.count ? 1:item.count+1
+            return {...item,count:!item.count ? 1:item.count+1};
         }
-      })
+        return item;
+      });
         
       
     

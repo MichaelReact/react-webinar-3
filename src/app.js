@@ -36,17 +36,39 @@ console.log(listModal);
     })
   }
 
+  
+    const newList=listModal.slice().map(item=>{
+      item.all=item.price*item.count;
+      return item;
+   });
+  
+   const [price,quantity]=newList.reduce((item,nextItem)=>{
+    item[0]=item[0]+nextItem.all;
+    item[1]=item[1]+nextItem.count;
+     
+     return item;
+   },[0,0]);
+  
+  
   return (
     <>
     <PageLayout>
       <Head title='Магазин'/>
-      <Controls onOpen={callbacks.onOpen} listModal={listModal}/>
+      <Controls onOpen={callbacks.onOpen} 
+        listModal={listModal} 
+        price={price} 
+        quantity={quantity}
+      />
       <List list={list}
             onAddItem={callbacks.onAddItem}
             onSelectItem={callbacks.onSelectItem}
             />
     </PageLayout>
-    <Modal list={listModal} onClose={callbacks.onClose} onDelete={callbacks.onDeleteItem}/>
+    <Modal list={listModal} onClose={callbacks.onClose} 
+      onDelete={callbacks.onDeleteItem}
+      price={price}
+
+    />
     </>
   );
 }

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import './style.css';
 
 
-const Modal=({onClose,list,onDelete})=>{
+const Modal=({onClose,list,onDelete,price})=>{
   console.log(list)
    function onDeleteItem(id){
     onDelete(id)
@@ -16,6 +16,8 @@ const Modal=({onClose,list,onDelete})=>{
                 <div className="modal">
                             <h1 className="modal__title">Корзина</h1>
                             <button className="close" onClick={onClose}>Закрыть</button> 
+                            <div className='List'>
+                            <div className='List-item'>
                             {list.map(item=>{
                                
                                 return (
@@ -38,12 +40,16 @@ const Modal=({onClose,list,onDelete})=>{
                                       );
                                 
                             })}
-                        </div>
+                            </div>
+                            </div>
+
+                            <div className="sum">Итого: {price} ₽ </div>
+                </div>
             </div>);
 };
 
 Modal.propTypes={
- list: Proptypes.array.isRequired,
+ list: PropTypes.array.isRequired,
   onClose: PropTypes.func,
   onDelete: PropTypes.func
 }
