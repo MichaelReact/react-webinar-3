@@ -1,16 +1,18 @@
-import React, {useCallback} from 'react';
+import React, {useCallback,useState} from 'react';
 import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Modal from "./components/modals";
+import Cart from "./components/cart";
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
 function App({store}) {
-
+  let [flag,setFlag]=useState(false);
+  console.log(flag)
   const list = store.getState().list;
   const listModal = store.getModalState().list;
 console.log(listModal);
@@ -26,14 +28,15 @@ console.log(listModal);
     onAddItem: useCallback((id) => {
       store.addItem(id);
     }, [store]),
-    onClose:useCallback((e)=>{
-      console.log(e.target)
-      e.target.closest('.modal-wrapper').style.display='none';
-    }),
-    onOpen:useCallback((e)=>{
-     
-      document.querySelector('.modal-wrapper').style.display='block';
-    })
+    onClose:(e)=>{
+      // console.log(e.target)
+      // e.target.closest('.modal-wrapper').style.display='none';
+      setFlag(false);
+    },
+    onOpen:(e)=>{
+      setFlag(true);
+      // document.querySelector('.modal-wrapper').style.display='block';
+    }
   }
 
   
@@ -44,7 +47,7 @@ console.log(listModal);
   
    const [price,quantity]=newList.reduce((item,nextItem)=>{
     item[0]=item[0]+nextItem.all;
-    item[1]=item[1]+nextItem.count;
+    item[1]=nextItem.count?item[1]+1:item[1]+0;
      
      return item;
    },[0,0]);
@@ -64,11 +67,16 @@ console.log(listModal);
             onSelectItem={callbacks.onSelectItem}
             />
     </PageLayout>
-    <Modal list={listModal} onClose={callbacks.onClose} 
-      onDelete={callbacks.onDeleteItem}
-      price={price}
+    {flag?<Modal  onClose={callbacks.onClose} 
+     
 
-    />
+    >
+      <Cart 
+          list={listModal}
+          onDelete={callbacks.onDeleteItem}
+          price={price}       
+      />
+    </Modal>:''}
     </>
   );
 }

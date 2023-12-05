@@ -88,6 +88,7 @@ g
       this.modalState.list=this.modalState.list.map(item=>{
         if (item.code === code) {
             return {...item,count:!item.count ? 1:item.count+1};
+           
         }
         return item;
       });

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import './style.css';
+import {formatPrice} from '../../utils';
+import Cart from "../cart";
 
-
-const Modal=({onClose,list,onDelete,price})=>{
-  console.log(list)
+const Modal=({onClose,children})=>{
+  // const priceFormat=formatPrice(price);
    function onDeleteItem(id){
     onDelete(id)
    }
@@ -16,41 +17,15 @@ const Modal=({onClose,list,onDelete,price})=>{
                 <div className="modal">
                             <h1 className="modal__title">Корзина</h1>
                             <button className="close" onClick={onClose}>Закрыть</button> 
-                            <div className='List'>
-                            <div className='List-item'>
-                            {list.map(item=>{
-                               
-                                return (
-                                  
-                                        <div className='Item' key={item.code}>
-                                          <div className='Item-code'>{item.code}</div>
-                                          <div className='Item-title'>
-                                            {item.title} 
-                                          </div>
-                                          
-                                          <div className='Item-actions'>
-                                          <div className='Item-actions__price'> {item.price+' ₽'}</div>
-                                          <div className='Item-actions__count'>{`${item.count} шт`}</div>
-                                            <button onClick={()=>onDelete(item.code)}
-                                            >
-                                              Удалить
-                                            </button>
-                                          </div>
-                                        </div>
-                                      );
-                                
-                            })}
-                            </div>
-                            </div>
-
-                            <div className="sum">Итого: {price} ₽ </div>
+                            {children}
                 </div>
             </div>);
 };
 
 Modal.propTypes={
- list: PropTypes.array.isRequired,
+ 
   onClose: PropTypes.func,
-  onDelete: PropTypes.func
+ 
+  
 }
 export default React.memo(Modal);

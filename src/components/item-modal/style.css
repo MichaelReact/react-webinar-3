@@ -1,0 +1,22 @@
+.modal .Item{
+    border-top:1px dashed #ccc;
+}
+
+.modal .Item-code{
+    color: #000;
+
+font-family: Arial;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+}
+.modal .List{
+    margin-top: 90px;
+}
+/* .modal .List-item{
+    border-bottom:1px dashed #ccc;
+   
+} */
+.modal .Item:last-child{
+    border-bottom:1px dashed #ccc;
+}

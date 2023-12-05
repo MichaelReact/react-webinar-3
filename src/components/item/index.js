@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {plural} from "../../utils";
 import './style.css';
+import {formatPrice} from '../../utils';
 
 function Item(props) {
 
- 
+  const price=formatPrice(props.item.price);
 
   const callbacks = {
    
@@ -32,7 +33,7 @@ function Item(props) {
       <div className='Item-title'>
         {props.item.title} 
       </div>
-      <span className='Item-actions__price'>{props.item.price}<span> ₽</span></span>
+      <span className='Item-actions__price'>{price}</span>
       <div className='Item-actions'   onClick={callbacks.onSelect}>
        
         <button onClick={callbacks.onAdd}>

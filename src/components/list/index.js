@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import Item from "../item";
 import './style.css';
 
-function List({list, onDeleteItem, onAddItem,onSelectItem}) {
+function List({list, onDeleteItem, onAddItem,onSelectItem,children}) {
+  console.log(children)
   return (
-    <div className='List'>{
-      list.map(item =>
-        <div key={item.code} className='List-item'>
-          <Item item={item} id={item.code} onSelectItem={onSelectItem} onAddItem={onAddItem} />
-        </div>
-      )}
+    <div className='List'>
+      {children||list.map((item) =>{
+          return <div key={item.code} className='List-item'>
+         <Item item={item} id={item.code} onSelectItem={onSelectItem} onAddItem={onAddItem} />
+        </div>;
+
+      })}
     </div>
-  )
+  );
 }
 
 List.propTypes = {
