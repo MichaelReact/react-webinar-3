@@ -1,3 +1,20 @@
 .modal .sum{
-    padding-bottom: 30px;
+    padding-bottom: 60px;
+   text-align: right;
+    padding-top: 20px;
+    color: #000;
+
+
+font-family: Arial;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+margin-right: 120px;
+display:flex;
+justify-content: flex-end;
+align-items: center;
+}
+.modal .sum span.sum__name{
+    display: block;
+    margin-right: 53px;
 }

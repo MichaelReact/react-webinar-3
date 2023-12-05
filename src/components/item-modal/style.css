@@ -20,3 +20,7 @@ font-weight: 400;
 .modal .Item:last-child{
     border-bottom:1px dashed #ccc;
 }
+.modal .Item-actions__count{
+    margin-left: 62px;
+    margin-right: 24px;
+}

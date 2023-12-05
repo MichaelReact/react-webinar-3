@@ -22,7 +22,7 @@ const Cart=({list,onDelete,price})=>{
                            })}
            
         </List>
-        {price>=0?<div className="sum">Итого: {priceFormat}  </div>:''}
+        {price>=0?<div className="sum"><span className="sum__name">Итого:</span> <span>{priceFormat}</span>  </div>:''}
         </>
     );
 }
